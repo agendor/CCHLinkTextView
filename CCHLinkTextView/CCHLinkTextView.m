@@ -266,6 +266,7 @@ NSString *const CCHLinkAttributeName = @"CCHLinkAttributeName";
         self.rangeValuesForTouchDown = [self didTouchDownAtLocation:location];
     } else if (recognizer.state == UIGestureRecognizerStateEnded) {
         NSAssert(self.rangeValuesForTouchDown != nil, @"Invalid touch down ranges");
+        [self didCancelTouchDownAtRangeValues:self.rangeValuesForTouchDown];
         
         if (recognizer.result == CCHLinkGestureRecognizerResultTap) {
             [self didTapAtRangeValues:self.rangeValuesForTouchDown];
@@ -273,7 +274,6 @@ NSString *const CCHLinkAttributeName = @"CCHLinkAttributeName";
             [self didLongPressAtRangeValues:self.rangeValuesForTouchDown];
         }
         
-        [self didCancelTouchDownAtRangeValues:self.rangeValuesForTouchDown];
         self.rangeValuesForTouchDown = nil;
     }
 }
